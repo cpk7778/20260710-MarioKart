@@ -50,28 +50,72 @@ const Kart = forwardRef(function Kart({ onUpdate }, ref) {
 
   return (
     <group ref={ref} position={[0, 0, 0]}>
-      {/* 차체 */}
-      <mesh castShadow position={[0, 0.4, 0]}>
-        <boxGeometry args={[1, 0.5, 1.8]} />
-        <meshStandardMaterial color="#e63946" />
-      </mesh>
-      {/* 캐빈 */}
-      <mesh castShadow position={[0, 0.75, -0.15]}>
-        <boxGeometry args={[0.7, 0.4, 0.8]} />
-        <meshStandardMaterial color="#ffd166" />
-      </mesh>
-      {/* 바퀴 */}
-      {[
-        [-0.55, 0.15, 0.65],
-        [0.55, 0.15, 0.65],
-        [-0.55, 0.15, -0.65],
-        [0.55, 0.15, -0.65],
-      ].map((p, i) => (
-        <mesh key={i} position={p} rotation={[0, 0, Math.PI / 2]} castShadow>
-          <cylinderGeometry args={[0.28, 0.28, 0.22, 16]} />
-          <meshStandardMaterial color="#1d1d1d" />
+      {/* Futuristic rider silhouette with silver suit and cyan energy lines */}
+      <group position={[0, 0.18, 0]}>
+        {/* hover board */}
+        <mesh receiveShadow castShadow position={[0, 0.08, 0]}>
+          <boxGeometry args={[0.75, 0.08, 1.25]} />
+          <meshStandardMaterial color="#7e8fa8" metalness={0.72} roughness={0.25} />
         </mesh>
-      ))}
+        <mesh position={[0, 0.1, 0]}>
+          <boxGeometry args={[0.62, 0.02, 1.05]} />
+          <meshStandardMaterial color="#87edff" emissive="#22b8d8" emissiveIntensity={1.25} />
+        </mesh>
+
+        {/* legs */}
+        <mesh castShadow position={[-0.13, 0.42, 0.08]}>
+          <capsuleGeometry args={[0.07, 0.34, 8, 14]} />
+          <meshStandardMaterial color="#9aacc4" metalness={0.58} roughness={0.3} />
+        </mesh>
+        <mesh castShadow position={[0.13, 0.42, 0.08]}>
+          <capsuleGeometry args={[0.07, 0.34, 8, 14]} />
+          <meshStandardMaterial color="#9aacc4" metalness={0.58} roughness={0.3} />
+        </mesh>
+
+        {/* torso */}
+        <mesh castShadow position={[0, 0.8, -0.02]}>
+          <capsuleGeometry args={[0.16, 0.42, 8, 16]} />
+          <meshStandardMaterial color="#c5d4e8" metalness={0.62} roughness={0.22} />
+        </mesh>
+        <mesh position={[0, 0.83, 0.13]}>
+          <boxGeometry args={[0.18, 0.26, 0.04]} />
+          <meshStandardMaterial color="#8cecff" emissive="#23bad9" emissiveIntensity={1.2} />
+        </mesh>
+
+        {/* shoulders and arms */}
+        <mesh castShadow position={[-0.26, 0.88, -0.02]}>
+          <sphereGeometry args={[0.07, 14, 14]} />
+          <meshStandardMaterial color="#a7b8cf" metalness={0.6} roughness={0.24} />
+        </mesh>
+        <mesh castShadow position={[0.26, 0.88, -0.02]}>
+          <sphereGeometry args={[0.07, 14, 14]} />
+          <meshStandardMaterial color="#a7b8cf" metalness={0.6} roughness={0.24} />
+        </mesh>
+        <mesh castShadow position={[-0.34, 0.73, 0.03]} rotation={[0, 0, 0.55]}>
+          <capsuleGeometry args={[0.05, 0.26, 8, 12]} />
+          <meshStandardMaterial color="#9eb0c8" metalness={0.55} roughness={0.28} />
+        </mesh>
+        <mesh castShadow position={[0.34, 0.73, 0.03]} rotation={[0, 0, -0.55]}>
+          <capsuleGeometry args={[0.05, 0.26, 8, 12]} />
+          <meshStandardMaterial color="#9eb0c8" metalness={0.55} roughness={0.28} />
+        </mesh>
+
+        {/* head and visor */}
+        <mesh castShadow position={[0, 1.16, -0.03]}>
+          <sphereGeometry args={[0.12, 18, 18]} />
+          <meshStandardMaterial color="#dde9f8" metalness={0.3} roughness={0.15} />
+        </mesh>
+        <mesh position={[0, 1.15, 0.07]}>
+          <boxGeometry args={[0.16, 0.06, 0.03]} />
+          <meshStandardMaterial color="#8ef0ff" emissive="#21b9d9" emissiveIntensity={1.45} />
+        </mesh>
+
+        {/* back energy ring */}
+        <mesh position={[0, 0.86, -0.22]} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[0.12, 0.03, 10, 28]} />
+          <meshStandardMaterial color="#7beaff" emissive="#18add0" emissiveIntensity={1.4} />
+        </mesh>
+      </group>
     </group>
   )
 })
